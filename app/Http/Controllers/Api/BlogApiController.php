@@ -59,11 +59,12 @@ class BlogApiController extends Controller
 
 
         $Blogs = Blog::create($request->all());
-/*                 That will be uncommented when we apply JWT
-        $id = team::where('user_id', Auth::user()->id)->first()->id;
-        $Blogs->team_id = $id;
+
+
+        $Blogs->published = 0;
+
         $Blogs->save();
-*/
+
         if($Blogs){
             return $this->ApiResponse($Blogs,'Blog has been added successfully ',Response::HTTP_ACCEPTED);
         }

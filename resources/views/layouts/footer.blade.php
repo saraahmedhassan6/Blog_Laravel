@@ -6,47 +6,49 @@
             <div class="row g-5">
                 <div class="col-lg-4">
                     <h3 class="footer-heading">About SaraBlog</h3>
-                    <p>. </p>
-                    <p><a href="" class="footer-link-more">Learn More</a></p>
+                    <p>Welcome to Our Blog</p>
+                    <p><a href="https://github.com/saraahmedhassan6/Blog_Laravel" class="footer-link-more">Learn More</a></p>
                 </div>
                 <div class="col-6 col-lg-2">
                     <h3 class="footer-heading">Navigation</h3>
                     <ul class="footer-links list-unstyled">
                         <li><a href="{{url('home')}}"><i class="bi bi-chevron-right"></i> Home</a></li>
-                        <li><a href=""><i class="bi bi-chevron-right"></i> Categories</a></li>
-                        <li><a href=""><i class="bi bi-chevron-right"></i> About us</a></li>
-                        <li><a href=""><i class="bi bi-chevron-right"></i> Contact</a></li>
+                        <li><a href="{{url('Blogs')}}"><i class="bi bi-chevron-right"></i> Blogs</a></li>
+                        <li><a href="{{url('project')}}"><i class="bi bi-chevron-right"></i> Projects</a></li>
+                        <li><a href="{{url('Team')}}"><i class="bi bi-chevron-right"></i> Authors</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-lg-2">
-                    <h3 class="footer-heading">Categories</h3>
+                    <h3 class="footer-heading">Authors</h3>
                     <ul class="footer-links list-unstyled">
-
-                            <li><a href=""><i class="bi bi-chevron-right"></i> </a></li>
-
+                        @foreach($Teams as $Team)
+                            <li><a href="{{url('Team')}}"><i class="bi bi-chevron-right"></i> </a> <span><a href="{{url('Team')}}">{{$Team->name}}</a></span></li>
+                        @endforeach
 
                     </ul>
                 </div>
 
                 <div class="col-lg-4">
                     <h3 class="footer-heading">Recent Posts</h3>
-
+                    @foreach($Blogs as $Blog)
 
                     <ul class="footer-links footer-blog-entry list-unstyled">
 
                         <li>
-                            <a href="" class="d-flex align-items-center">
-                                <img src="" alt="" class="img-fluid me-3">
+                            <a href="{{ url('ShowBlog') }}/{{ $Blog->id }}" class="d-flex align-items-center">
+                                <img src="{{asset('BlogImage/'.$Blog->thumbnail)}}" alt="" class="img-fluid me-3">
                                 <div>
                                     <div style="margin-top: 20px;"><span style="color: darkgray">  <span>&bullet;</span>
-                               </span></div>
-                                    <span></span>
+                               {{\Carbon\Carbon::parse($Blog->created_at)->format('d-m-y')}} </span></div>
+
+                                    <span>{{$Blog->title}}</span>
+
                                 </div>
                             </a>
                         </li>
 
                     </ul>
-
+                    @endforeach
 
                 </div>
             </div>
